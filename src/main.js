@@ -23,7 +23,10 @@ const lightbox = new SimpleLightbox ('.gallery-list a', {
 formEl.addEventListener('submit', (event) => {
     event.preventDefault();
     const intputValue = event.target.elements.search.value.trim();
-
+  
+    container.innerHTML = '';
+    
+  
       if (!intputValue) {
         iziToast.error({
           title: 'Error',
@@ -33,13 +36,12 @@ formEl.addEventListener('submit', (event) => {
         });
         return;
     }
-    
+
     loader.classList.remove('hidden');
     loader.style.display = 'block';
 
     searchImage(intputValue)
         .then(data => {
-            console.log(data);
             if (!data.total) {
                 iziToast.error({
                 title: 'Error',
